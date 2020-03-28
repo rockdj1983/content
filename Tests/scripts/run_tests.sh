@@ -19,6 +19,9 @@ code_2=0
 echo "starting configure_and_test_integration_instances"
 start=$SECONDS
 python ./Tests/configure_and_test_integration_instances.py -u "$USERNAME" -p "$PASSWORD" -c "$CONF_PATH" -s "$SECRET_CONF_PATH" -g "$GIT_SHA1" --ami_env "$1" -n $IS_NIGHTLY
+end=$SECONDS
+duration=$(( end - start ))
+echo "##BUILD_TIME: configure_and_test_integration_instances took $duration seconds to complete"
 code_1=$?
 duration=$(( end - start ))
 echo "configure_and_test_integration_instances took $duration seconds to complete"
@@ -26,8 +29,9 @@ if [ $code_1 -ne 1 ] ;
 then
   start=$SECONDS
   python ./Tests/test_content.py -k "$DEMISTO_API_KEY" -c "$CONF_PATH" -e "$SECRET_CONF_PATH" -n $IS_NIGHTLY -t "$SLACK_TOKEN" -a "$CIRCLECI_TOKEN" -b "$CIRCLE_BUILD_NUM" -g "$CIRCLE_BRANCH" -m "$MEM_CHECK" --isAMI true -d "$1"
+  end=$SECONDS
   duration=$(( end - start ))
-  echo "test_content took $duration seconds to complete"
+  echo "##BUILD_TIME: test_content took $duration seconds to complete"
 fi
 
 code_2=$?
