@@ -46,6 +46,7 @@ def main():
 
     while len(instance_ips_not_created) > 0:
         current_time = time.time()
+        time_now = datetime.datetime.now()
         exit_if_timed_out(loop_start_time, current_time)
 
         for ami_instance_name, ami_instance_ip in instance_ips:
@@ -64,8 +65,9 @@ def main():
                     instance_ips_not_created.remove(ami_instance_ip)
                 # printing the message every 30 seconds
                 elif current_time - last_update_time > PRINT_INTERVAL_IN_SECONDS:
-                    print("{} at ip {} is not ready yet - waiting for it to start".format(ami_instance_name,
-                                                                                          ami_instance_ip))
+                    print("{}: {} at ip {} is not ready yet - waiting for it to start".format(time_now,
+                                                                                              ami_instance_name,
+                                                                                              ami_instance_ip))
 
         if current_time - last_update_time > PRINT_INTERVAL_IN_SECONDS:
             # The interval has passed, which means we printed a status update.
