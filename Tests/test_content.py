@@ -816,12 +816,15 @@ def manage_tests(tests_settings):
 
     """
     tests_settings.serverNumericVersion = get_and_print_server_numeric_version(tests_settings)
+    print('get_and_print_server_numeric_version Time: {}'.format(datetime.now()))
     instances_ips = get_instances_ips_and_names(tests_settings)
+    print('get_instances_ips_and_names Time: {}'.format(datetime.now()))
     is_nightly = tests_settings.nightly
     number_of_instances = len(instances_ips)
     prints_manager = ParallelPrintsManager(number_of_instances)
     tests_data_keeper = TestsDataKeeper()
 
+    print('tests_settings.server: {}\ntests_settings.isAMI'.format(tests_settings.server, tests_settings.isAMI))
     if tests_settings.server:
         # If the user supplied a server - all tests will be done on that server.
         server_ip = tests_settings.server
