@@ -27,13 +27,11 @@ def main():
             print(exc.output)
 
         try:
-            log_dir = "tmp/server_logs/server_{}".format(env["Role"].replace(' ', ''))
-            subprocess.check_output('mkdir -p {}'.format(log_dir))
             subprocess.check_output(
                 scp_string.format(
                     env["SSHuser"],
                     env["InstanceDNS"],
-                    log_dir),
+                    circle_aritfact),
                 shell=True)
 
         except subprocess.CalledProcessError as exc:
