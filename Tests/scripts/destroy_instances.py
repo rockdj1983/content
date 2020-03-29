@@ -27,7 +27,7 @@ def main():
             print(exc.output)
 
         try:
-            log_dir = "{}/{}".format(circle_aritfact, env["Role"].replace(' ', ''))
+            log_dir = "tmp/server_logs/server_{}".format(env["Role"].replace(' ', ''))
             subprocess.check_output('mkdir -p {}'.format(log_dir))
             subprocess.check_output(
                 scp_string.format(
