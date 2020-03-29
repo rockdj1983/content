@@ -17,7 +17,7 @@ def main():
         ssh_string = 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null {}@{} ' \
                      '"sudo chmod -R 755 /var/log/demisto"'
         scp_string = 'scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ' \
-                     '{}@{}:/var/log/demisto/server.log {} || echo "WARN: Failed downloading server.log"'
+                     '{}@{}:/var/log/demisto/server\\*.log {} || echo "WARN: Failed downloading server.log"'
 
         try:
             subprocess.check_output(
@@ -27,11 +27,13 @@ def main():
             print(exc.output)
 
         try:
+            log_dir = "{}/{}".format(circle_aritfact, env["Role"].replace(' ', ''))
+            subprocess.check_output('mkdir {}'.format(log_dir))
             subprocess.check_output(
                 scp_string.format(
                     env["SSHuser"],
                     env["InstanceDNS"],
-                    "{}/server_{}.log".format(circle_aritfact, env["Role"].replace(' ', ''))),
+                    log_dir),
                 shell=True)
 
         except subprocess.CalledProcessError as exc:
