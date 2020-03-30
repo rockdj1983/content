@@ -560,7 +560,7 @@ jobs:
                 python ./Tests/scripts/destroy_instances.py $CIRCLE_ARTIFACTS ./env_results.json
 
                 export PSWD=$(jq .serverLogsZipPassword < $(cat secret_conf_path) | cut -d \" -f 2)
-                zip -P $PSWD $CIRCLE_ARTIFACTS/ServerLogs.zip $CIRCLE_ARTIFACTS/log*/server*.log
+                zip -P $PSWD $CIRCLE_ARTIFACTS/ServerLogs.zip log*/server*.log
                 rm -f $CIRCLE_ARTIFACTS/server*.log
             fi
             end=$SECONDS
