@@ -183,6 +183,7 @@ script: |
 
   demisto.results(result)
 type: python
+subtype: python2
 tags:
 - servicenow
 comment: |-
