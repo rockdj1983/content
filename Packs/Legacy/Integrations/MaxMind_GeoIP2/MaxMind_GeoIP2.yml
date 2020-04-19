@@ -16,12 +16,12 @@ configuration:
   defaultvalue: ""
   type: 0
   required: true
-- display: Use system proxy
+- display: Use system proxy settings
   name: proxy
   defaultvalue: ""
   type: 8
   required: false
-- display: Trust any certificate (unsecure)
+- display: Trust any certificate (not secure)
   name: insecure
   defaultvalue: ""
   type: 8
@@ -105,6 +105,18 @@ script:
     - contextPath: MaxMind.City
       description: City the IP is located in
       type: string
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: string
+    - contextPath: DBotScore.Type
+      description: The indicator type.
+      type: string
+    - contextPath: DBotScore.Vendor
+      description: The vendor used to calculate the score.
+      type: string
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: Number
     description: Check IP reputation (when information is available, returns a JSON
       with details). Uses all configured Threat Intelligence feeds
   runonce: false

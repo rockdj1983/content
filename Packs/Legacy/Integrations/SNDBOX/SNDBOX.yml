@@ -20,10 +20,10 @@ configuration:
     required: true
   - display: Use system proxy settings
     name: proxy
-    defaultvalue: "False"
+    defaultvalue: ""
     type: 8
     required: false
-  - display: Trust any certificate (unsecure)
+  - display: Trust any certificate (not secure)
     name: insecure
     defaultvalue: ''
     type: 8

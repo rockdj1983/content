@@ -17,26 +17,24 @@ configuration:
   defaultvalue: https://example.awake.cloud
   type: 0
   required: true
-- display: Trust any certificate (unsecure)
+- display: Trust any certificate (not secure)
   name: unsecure
   defaultvalue: ""
   type: 8
   required: false
 - display: Fetch incidents
   name: isFetch
-  defaultvalue: ""
   type: 8
   required: false
 - display: Incident type
   name: incidentType
-  defaultvalue: ""
   type: 13
   required: false
 - display: Use system proxy settings
   name: proxy
   defaultvalue: ""
   type: 8
-  required: true
+  required: false
 - display: 'Comma-separated list of threat behaviors to generate incidents for, e.g.,
     "Exfiltration: SSL upload from non-browser to notable domain, Lateral Movement:
     Unix-based PSEXEC, C2: Possible ICMP tunnel"'

@@ -12,11 +12,11 @@ configuration:
   name: api_key
   required: true
   type: 4
-- display: Use system proxy
+- display: Use system proxy settings
   name: proxy
   required: false
   type: 8
-- display: Trust any certificate (unsecure)
+- display: Trust any certificate (not secure)
   name: insecure
   required: false
   type: 8
@@ -519,7 +519,7 @@ script:
     description: Retrieves a sample using the sample ID. (Deprecated)
     execution: false
     name: upload_sample
-  dockerimage: demisto/python
+  dockerimage: demisto/python:latest
   isfetch: false
   runonce: false
   script: ''
